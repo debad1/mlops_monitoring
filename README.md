@@ -25,4 +25,4 @@ Pour démarrer le tendem prometheus/grafana:
 docker compose up -d
 ```
 
-Tout est configurer pour fonctionner avec l'application démarrée en mode dev, c'est à dire démrée avec Pycharm ou vscode.
+Tout est configuré pour fonctionner avec l'application démarrée en mode dev, c'est à dire démrée avec Pycharm ou vscode.
