@@ -9,8 +9,8 @@ from starlette.responses import JSONResponse
 # not_survived_counter = Counter("not_survived", "Counter for not survived")
 
 app = FastAPI()
-# metrics_app = make_asgi_app()
-# app.mount("/metrics", metrics_app)
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
 
 
 @app.get("/heart_attack")
@@ -23,7 +23,7 @@ def prediction_api(time: int, ejection_fraction: float, serum_creatinine: float)
 #        survived_counter.inc()
 #    else:
 #       not_survived_counter.inc()
-    return JSONResponse(content={"prediction": prediction.tolist()})
+    return heart_attack_model
 
 
 if __name__ == "__main__":
