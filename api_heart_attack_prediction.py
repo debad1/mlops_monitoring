@@ -7,7 +7,7 @@ from starlette.responses import JSONResponse
 
 # survived_counter = Counter("survived", "Counter for survived")
 # not_survived_counter = Counter("not_survived", "Counter for not survived")
-
+#Test
 app = FastAPI()
 # metrics_app = make_asgi_app()
 # app.mount("/metrics", metrics_app)
