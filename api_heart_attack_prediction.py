@@ -15,7 +15,7 @@ app.mount("/metrics", metrics_app)
 
 @app.get("/heart_attack")
 def prediction_api(time: int, ejection_fraction: float, serum_creatinine: float):
-    heart_attack_model = joblib.load("./heart_attack_model.joblib")
+    heart_attack_model = joblib.load("./heart_attack_prediction_model.joblib")
     x = [time, ejection_fraction, serum_creatinine]
     prediction = heart_attack_model.predict(pd.DataFrame(x).transpose())
 
