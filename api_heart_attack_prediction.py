@@ -5,9 +5,10 @@ import pandas as pd
 from prometheus_client import Counter, make_asgi_app
 from starlette.responses import JSONResponse
 
-# survived_counter = Counter("survived", "Counter for survived")
-# not_survived_counter = Counter("not_survived", "Counter for not survived")
-# Test and test
+survived_counter = Counter("survived", "Counter for survived")
+not_survived_counter = Counter("not_survived", "Counter for not survived")
+
+
 app = FastAPI()
 metrics_app = make_asgi_app()
 app.mount("/metrics", metrics_app)
@@ -16,14 +17,16 @@ app.mount("/metrics", metrics_app)
 @app.get("/heart_attack")
 def prediction_api(time: int, ejection_fraction: float, serum_creatinine: float):
     heart_attack_model = joblib.load("./heart_attack_prediction_model.joblib")
-    x = [time, ejection_fraction, serum_creatinine]
-    prediction = heart_attack_model.predict(pd.DataFrame(x).transpose())
+    x = pd.DataFrame([time, ejection_fraction, serum_creatinine]).transpose()
+    x.columns = ['time', 'ejection_fraction', 'serum_creatinine']
+    prediction = heart_attack_model.predict(x)
+    survived = int(prediction) == 1
 
-#    if survived:
-#        survived_counter.inc()
-#    else:
-#       not_survived_counter.inc()
-    return prediction
+    if survived:
+        survived_counter.inc()
+    else:
+        not_survived_counter.inc()
+    return survived
 
 
 if __name__ == "__main__":
