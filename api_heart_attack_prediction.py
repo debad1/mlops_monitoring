@@ -23,7 +23,7 @@ def prediction_api(time: int, ejection_fraction: float, serum_creatinine: float)
 #        survived_counter.inc()
 #    else:
 #       not_survived_counter.inc()
-    return heart_attack_model
+    return prediction
 
 
 if __name__ == "__main__":
