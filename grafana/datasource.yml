@@ -7,3 +7,9 @@ datasources:
     isDefault: true
     access: proxy
     editable: true
+
+  - name: myapi-metrics
+    type: prometheus
+    url: http://myapi:5000
+    access: proxy
+    editable: true

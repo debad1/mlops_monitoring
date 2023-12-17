@@ -22,7 +22,7 @@
 
             let response = await fetch(`/heart_attack?time=${time}&ejection_fraction=${ejection_fraction}&serum_creatinine=${serum_creatinine}`);
             let result = await response.json();
-            document.getElementById("result").innerText = result.survived ? "Survie" : "Non survie";
+            document.getElementById("result").innerText = result.survived ? "Survied" : "Not survied";
         }
     </script>
 </body>

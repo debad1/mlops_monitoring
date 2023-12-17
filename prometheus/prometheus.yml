@@ -1,8 +1,16 @@
+# global config
 global:
-  scrape_interval: 15s  # Définir la fréquence de scraping
+  scrape_interval: 15s
+  evaluation_interval: 5s
 
+# Scrape configs
 scrape_configs:
-  - job_name: 'myapi'
-    scrape_interval: 5s  # Fréquence spécifique pour cette tâche
+  - job_name: "my-app"
+    scrape_interval: 5s
     static_configs:
-      - targets: ['host.docker.internal:5000']  # L'adresse de votre API FastAPI
+      - targets: ["host.docker.internal:5000"]
+
+  # new job for the metrics from FastAPI
+  - job_name: "myapi-metrics"
+    static_configs:
+      - targets: ["myapi:5000"]
