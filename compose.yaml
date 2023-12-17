@@ -1,4 +1,12 @@
 services:
+  myapi:
+    build: .
+    container_name: myapi
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app  # Cela monte le répertoire courant dans le conteneur à /app
+      
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -21,5 +29,6 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
+      
 volumes:
   prom_data:
